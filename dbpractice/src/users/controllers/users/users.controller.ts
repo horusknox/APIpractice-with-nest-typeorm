@@ -2,7 +2,7 @@ import { Controller,UsePipes,ValidationPipe,Get,Body,Post,Put,Delete,Param,Parse
 import { createUserDto } from 'src/users/dtos/createuser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
 import { updateuserdto } from 'src/users/dtos/updateuser.dto';
-
+import {namepipe} from 'src/pipes/name.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -18,7 +18,7 @@ export class UsersController {
     }
 
         @Post()
-        @UsePipes(new ValidationPipe())
+        @UsePipes(new ValidationPipe,new namepipe())
         createuser(@Body()createuserdto:createUserDto)
         {
             return this.userservice.createuser(createuserdto)
