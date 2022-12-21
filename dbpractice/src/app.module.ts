@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { userModule } from './users/users.module';
 import { User } from './typeorm/entities/User';
+import { mid } from './middlewares/mid.middleware';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -19,4 +20,8 @@ import { User } from './typeorm/entities/User';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule{
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(mid).forRoutes({path:'*',method:RequestMethod.ALL})
+  }
+}
