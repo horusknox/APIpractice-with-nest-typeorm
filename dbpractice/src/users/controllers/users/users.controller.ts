@@ -1,9 +1,10 @@
-import { Controller,UsePipes,ValidationPipe,Get,Body,Post,Put,Delete,Param,ParseIntPipe, UseGuards} from '@nestjs/common';
+import { Controller,UsePipes,ValidationPipe,Request,Get,Body,Post,Put,Delete,Param,ParseIntPipe, UseGuards} from '@nestjs/common';
 import { createUserDto } from 'src/users/dtos/createuser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
 import { updateuserdto } from 'src/users/dtos/updateuser.dto';
 import {namepipe} from 'src/pipes/name.pipe';
 import { RolesGuard } from 'src/roles/roles.guard';
+import { LocalAuthGuard } from 'src/users/services/auth/local-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -42,4 +43,9 @@ export class UsersController {
            
         }
 
+        @UseGuards(LocalAuthGuard)
+        @Post('login')
+        login(@Request() req:any){
+            return req.user
+        }
 }

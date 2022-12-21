@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { userModule } from './users/users.module';
 import { User } from './typeorm/entities/User';
 import { mid } from './middlewares/mid.middleware';
+import { AuthModule } from './users/services/auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -16,7 +17,7 @@ import { mid } from './middlewares/mid.middleware';
       database: "dbpractice",
       entities: [User],
       synchronize: true,
-    }),userModule],
+    }),userModule,AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
