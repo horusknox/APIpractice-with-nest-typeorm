@@ -49,7 +49,12 @@ export class UsersService {
         else{
                 throw new HttpException("User dosen't exist", HttpStatus.BAD_REQUEST);
         }
-}
+    }
+
+
+    gethello(){
+        return "HEHEHE"
+    }
 
 
     async userexists(userdetails:updateuserdto)
@@ -82,4 +87,18 @@ export class UsersService {
       }
         
     }
+
+
+
+   async findById(id:number) {
+        const user = await this.userRepository.findOneBy({id:id})
+        if(user) {
+            return user
+        }
+        else{
+            throw new HttpException("User dosen't exist", HttpStatus.BAD_REQUEST);
+        }
+}
+
+
 }

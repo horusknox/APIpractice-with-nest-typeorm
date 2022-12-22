@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable,UnauthorizedException } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable} from '@nestjs/common';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -15,7 +15,6 @@ export class RolesGuard implements CanActivate {
     const requiredroles='admin';
 
     if(!user.roles.includes(requiredroles)){
-      // throw new UnauthorizedException('User not admin');
       return false;
     }
     return true;
