@@ -8,4 +8,6 @@ export class createUserDto{
 
     @IsEmail()
     email:string;
+
+    roles:string
 }
