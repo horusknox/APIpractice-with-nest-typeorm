@@ -20,4 +20,7 @@ export class User{
 
     @Column({nullable:true})
     authStrategy:string;
+
+    @Column({nullable:true})
+    roles:string;
 }
