@@ -13,8 +13,8 @@ import { Jwtstrategy } from './jwt.service';
 
 @Module({
     imports:[TypeOrmModule.forFeature([User]),PassportModule.register({session:true}),JwtModule.register({
-        secret:'SECRET',
-        signOptions:{expiresIn: '60s'},
+        secret:"secret",
+      
     })],
     providers:[AuthService,LocalStrategy,UsersService,Jwtstrategy],
     exports: [AuthService]

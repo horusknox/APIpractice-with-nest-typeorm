@@ -56,7 +56,6 @@ export class UsersController {
         @Post('login')
         login(@Request() req:any){
             return this.authservice.login(req.user)
-        
         }
 
         @UseGuards(Authenticateguard,JwtAuthGuard,LocalAuthGuard)

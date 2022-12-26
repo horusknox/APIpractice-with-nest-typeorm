@@ -1,9 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext, HttpException, HttpStatus } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-// import { PassportStrategy } from '@nestjs/passport';
-// import { ExtractJwt, Strategy } from 'passport-jwt';
-// import { Observable } from 'rxjs';
-
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
