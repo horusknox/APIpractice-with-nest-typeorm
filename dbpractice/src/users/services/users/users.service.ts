@@ -81,4 +81,18 @@ export class UsersService {
       }
         
     }
+
+
+    async findById(userid:number)
+    {
+        const user = await this.userRepository.findOneBy({ id: userid})
+      
+      if(user) {
+            return user
+      } 
+      else {
+          return false
+      }
+        
+    }
 }
