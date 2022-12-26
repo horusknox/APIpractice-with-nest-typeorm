@@ -11,10 +11,7 @@ import { Jwtstrategy } from './services/auth/jwt.service';
 @Module({
     imports:[TypeOrmModule.forFeature([User]), forwardRef(()=>AuthModule)],
     controllers:[UsersController],
-<<<<<<< HEAD
-    providers:[UsersService,JwtService],
-=======
-    providers:[UsersService, AuthService],
->>>>>>> parent of 13488e5 (Fixed the code and completed guards)
+
+    providers:[UsersService,JwtService, AuthService],
 })
 export class userModule{}

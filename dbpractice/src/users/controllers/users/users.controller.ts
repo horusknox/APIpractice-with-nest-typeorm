@@ -5,22 +5,16 @@ import { updateuserdto } from 'src/users/dtos/updateuser.dto';
 import {namepipe} from 'src/pipes/name.pipe';
 import { RolesGuard } from 'src/roles/roles.guard';
 import { LocalAuthGuard } from 'src/users/services/auth/local-auth.guard';
-<<<<<<< HEAD
 import { Authenticateguard } from 'src/users/services/auth/authenticated.guard';
 import { AuthService } from 'src/users/services/auth/auth.service';
 import { JwtAuthGuard } from 'src/users/services/auth/jwtauth.guard';
 import { Roles } from 'src/roles/roles.decorator';
-// @Controller('cats')
-//
-// export class CatsController {}
-=======
 
->>>>>>> parent of 13488e5 (Fixed the code and completed guards)
 @Controller('users')
 
 export class UsersController {
 
-    constructor(private userservice:UsersService){}
+    constructor(private userservice:UsersService,private authservice:AuthService){}
 
     @Get()
     @UseGuards(RolesGuard)
@@ -62,7 +56,6 @@ export class UsersController {
         @SetMetadata('roles', ['admin'])
         @Post('login')
         login(@Request() req:any){
-<<<<<<< HEAD
             return this.authservice.login(req.user)
         
         }
@@ -70,8 +63,6 @@ export class UsersController {
         @UseGuards(Authenticateguard,JwtAuthGuard,LocalAuthGuard)
         @Get('protected')
         gethello(@Request() req:any):string{
-=======
->>>>>>> parent of 13488e5 (Fixed the code and completed guards)
             return req.user
         }
 }
