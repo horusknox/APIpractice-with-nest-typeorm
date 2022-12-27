@@ -21,6 +21,10 @@ export class User{
     @Column({nullable:true})
     authStrategy:string;
 
-    @Column({nullable:true})
-    roles:string;
+    // @Column({
+    //     array: true,
+    //     default: [],
+    //     nullable: false,
+    //   })
+    //   roles: string;
 }

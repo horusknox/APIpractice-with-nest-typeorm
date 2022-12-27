@@ -23,6 +23,6 @@ import { AuthModule } from './users/services/auth/auth.module';
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(mid).forRoutes({path:'*',method:RequestMethod.ALL})
+    consumer.apply(mid).forRoutes({path:'users/protected',method:RequestMethod.ALL})
   }
 }

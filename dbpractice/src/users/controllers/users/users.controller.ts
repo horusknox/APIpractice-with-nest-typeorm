@@ -1,4 +1,4 @@
-import { Controller,UsePipes,ValidationPipe,Request,Get,Body,Post,Put,Delete,Param,ParseIntPipe, UseGuards, SetMetadata} from '@nestjs/common';
+import { Controller,UsePipes,ValidationPipe,Request,Get,Body,Post,Put,Delete,Param,ParseIntPipe, UseGuards} from '@nestjs/common';
 import { createUserDto } from 'src/users/dtos/createuser.dto';
 import { UsersService } from 'src/users/services/users/users.service';
 import { updateuserdto } from 'src/users/dtos/updateuser.dto';
@@ -16,17 +16,15 @@ export class UsersController {
     constructor(private userservice:UsersService,private authservice:AuthService){}
 
     @Get()
-    @UseGuards()
+    @UseGuards(RolesGuard)
     async getusers()
     {
-        
-       const users=await this.userservice.fetchusers()
+        const users=await this.userservice.fetchusers()
         return users
     }
 
     
         @Post()
-        @SetMetadata('roles', ['admin'])
         @UsePipes(new ValidationPipe,new namepipe())
         @Roles('admin')
         createuser(@Body()createuserdto:createUserDto)
@@ -52,15 +50,15 @@ export class UsersController {
         }
 
         @UseGuards(LocalAuthGuard)
-        @SetMetadata('roles', ['admin'])
+        @Roles('admin')
         @Post('login')
         login(@Request() req:any){
             return this.authservice.login(req.user)
         }
 
-        @UseGuards(Authenticateguard,JwtAuthGuard,LocalAuthGuard)
+        @UseGuards(RolesGuard)//Authenticateguard,JwtAuthGuard,
         @Get('protected')
         gethello(@Request() req:any):string{
-            return req.user
+            return "you are  in the protected route"
         }
 }
