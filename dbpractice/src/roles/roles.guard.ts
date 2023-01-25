@@ -17,7 +17,7 @@ export class RolesGuard implements CanActivate {
  async canActivate(context: ExecutionContext):Promise<boolean> {   
      const userroles = this.reflector.get<string[]>('roles', context.getHandler());
      console.log(userroles);
-     const jwtuserroles= this.jwtservice.decode();
+     //const jwtuserroles= this.jwtservice.decode();
       if (!userroles) {
        throw new HttpException("User dosen't have any roles", HttpStatus.FORBIDDEN);     
            }
