@@ -2,10 +2,10 @@ import { Injectable,ArgumentMetadata, PipeTransform,HttpException,HttpStatus} fr
 @Injectable()
 export class namepipe implements PipeTransform{
   transform(value:any,metadata:ArgumentMetadata) {
-    if(!value.username.startsWith("shoukath"))
-    {
-      throw new HttpException('User name should start with shoukath', HttpStatus.BAD_GATEWAY);
-    }
+  //  if(!value.username.startsWith("shoukath"))
+  //  {
+    //  throw new HttpException('User name should start with shoukath', HttpStatus.BAD_GATEWAY);
+    //}
   
     if(value.password.length<=8)
     {
